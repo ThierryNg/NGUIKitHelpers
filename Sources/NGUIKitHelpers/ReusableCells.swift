@@ -7,17 +7,17 @@
 
 import UIKit
 
-protocol ReusableCell: AnyObject {
+public protocol ReusableCell: AnyObject {
     static var reuseIdentifier: String { get }
 }
 
-extension ReusableCell where Self: UITableViewCell {
+public extension ReusableCell where Self: UITableViewCell {
     static var reuseIdentifier: String {
         return String(describing: type(of: Self()))
     }
 }
 
-extension UITableView {
+public extension UITableView {
 
     func register<T: UITableViewCell>(_: T.Type) where T: ReusableCell {
         self.register(T.self, forCellReuseIdentifier: T.reuseIdentifier)
@@ -33,7 +33,7 @@ extension UITableView {
     }
 }
 
-extension UICollectionView {
+public extension UICollectionView {
 
     func register<T: UICollectionViewCell>(_: T.Type) where T: ReusableCell {
         self.register(T.self, forCellWithReuseIdentifier: T.reuseIdentifier)

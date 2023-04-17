@@ -17,6 +17,12 @@ public extension ReusableCell where Self: UITableViewCell {
     }
 }
 
+public extension ReusableCell where Self: UICollectionViewCell {
+    static var reuseIdentifier: String {
+        return String(describing: type(of: Self()))
+    }
+}
+
 public extension UITableView {
 
     func register<T: UITableViewCell>(_: T.Type) where T: ReusableCell {
